@@ -15,16 +15,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TaskServiceImpl implements TaskService {
-    
+
     @Autowired
 
     TaskRespository taskRepository;
 
-
     @Override
     public void save(Task task) {
         taskRepository.save(task);
-        
+
     }
 
     @Override
@@ -42,7 +41,10 @@ public class TaskServiceImpl implements TaskService {
         return taskRepository.findAll();
     }
 
+    @Override
+    public boolean existsByDescription(String description) {
 
-
+        return taskRepository.existsByDescription(description);
+    }
 
 }

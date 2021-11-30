@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 
+
 import com.Amxx.Tasking.Models.Usuario;
 
 public interface UsuarioService {
@@ -16,5 +17,11 @@ public interface UsuarioService {
     Page<Usuario> getUsuario(int page, int size, Sort sort);
 
     List<Usuario> list();
+
+    boolean existsById(Long id);
+
+    boolean existsByNombre(String nombre);
+
+    Optional<Usuario>  getOne(Long id);
 
 }

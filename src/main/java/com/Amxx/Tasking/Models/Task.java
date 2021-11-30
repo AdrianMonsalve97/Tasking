@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,11 +17,20 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
-
+    private Long cantidad;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
     @ManyToOne
     Usuario usuario;
+
+    public Task() {
+    }
+
+    public Task(String description2, Long id2) {
+    }
+
+    public Task(String description2, Long id2, Date fecha2, Usuario usuario2) {
+    }
 
     /**
      * @return Long return the id
@@ -74,9 +82,24 @@ public class Task {
         this.usuario = usuario;
     }
 
+    public Long getCantidad() {
+        return cantidad;
+    }
+
+    /**
+     * @param fecha the fecha to set
+     */
+    public void setCantidad(Long cantidad) {
+        this.cantidad = cantidad;
+    }
+
     @Override
     public String toString() {
         return "Task [description=" + description + ", fecha=" + fecha + ", id=" + id + ", usuario=" + usuario + "]";
+    }
+
+    public void aumentarCantidad() {
+        this.setCantidad(this.getCantidad() + 1);
     }
 
 }

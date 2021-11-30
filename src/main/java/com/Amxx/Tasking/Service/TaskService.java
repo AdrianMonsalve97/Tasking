@@ -18,4 +18,6 @@ public interface TaskService {
 
     Optional<Task> findById(Long id);
 
+    boolean existsByDescription(String description);
+
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
+
     @Autowired
 
     UsuarioRepository usuarioRepository;
@@ -39,6 +40,19 @@ public class UsuarioServiceImpl implements UsuarioService {
     public Page<Usuario> getUsuario(int page, int size, Sort sort) {
         return usuarioRepository.findAll(PageRequest.of(page, size, sort));
     }
-    
+
+    public Optional<Usuario> getOne(Long id) {
+        return usuarioRepository.findById(id);
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return usuarioRepository.existsById(id);
+    }
+
+    @Override
+    public boolean existsByNombre(String nombre) {
+        return usuarioRepository.existsByNombre(nombre);
+    }
 
 }

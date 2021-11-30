@@ -1,33 +1,14 @@
-package com.Amxx.Tasking.Models;
+package com.Amxx.Tasking.Dto;
 
-import javax.validation.constraints.NotNull;
+public class UsuarioDto {
 
-import java.util.List;
-
-import javax.persistence.*;
-
-@Entity
-@Table(name = "Usuario")
-public class Usuario {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+   
     private String nombre;
-    @NotNull
+    
     private String telefono;
-    @NotNull
+    
     private String nickname;
-
-    @OneToMany(mappedBy = "usuario")
-    List<Task> task;
-
-    public Usuario() {
-    }
-
-    public Usuario(String nombre, Long id) {
-    }
 
     /**
      * @return Long return the id
@@ -83,18 +64,6 @@ public class Usuario {
      */
     public void setNickname(String nickname) {
         this.nickname = nickname;
-    }
-
-    public List<Task> getTask() {
-        return task;
-    }
-
-    public void setTask(List<Task> task) {
-        this.task = task;
-    }
-
-    public Usuario get() {
-        return null;
     }
 
 }

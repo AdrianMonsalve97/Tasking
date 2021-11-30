@@ -13,4 +13,9 @@ public interface TaskRespository extends JpaRepository<Task, Long> {
     // query que haga una validacion si el estado es urgente tiene que traer las
     // tareas urgentes
 
+    boolean existsByDescription(String description);
+
+
+
+
 }
