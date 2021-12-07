@@ -56,8 +56,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Optional<Usuario> findByNickname(String nickname) {
-        return usuarioRepository.findByNickname(nickname);
+    public Optional<Usuario> getByNickname(String nickname) {
+        return usuarioRepository.getByNickname(nickname);
     }
 
     @Override

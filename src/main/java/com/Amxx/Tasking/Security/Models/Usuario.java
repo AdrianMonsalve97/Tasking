@@ -19,45 +19,37 @@ public class Usuario {
     private Long id;
     @NotNull
     private String nombre;
-    @NotNull
+
     private String telefono;
     @NotNull
+    @Column(unique = true)
     private String nickname;
     @NotNull
     private String password;
     @OneToMany(mappedBy = "usuario")
     List<Task> task;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
-    inverseJoinColumns = @JoinColumn(name = "rol_id"))
+    @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
-
- 
-
 
     public String getPassword() {
         return password;
     }
 
-
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public Set<Rol> getRoles() {
         return roles;
     }
 
-
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
     }
 
-
     public Usuario() {
     }
-
 
     public Usuario(Long id, @NotNull String nombre, @NotNull String telefono, @NotNull String nickname,
             List<Task> task) {
@@ -68,10 +60,8 @@ public class Usuario {
         this.task = task;
     }
 
-
-    public Usuario(String nombre2, String nombreUsuario, String encode) {
+    public Usuario(String nombre, String nombreUsuario, String encode) {
     }
-
 
     /**
      * @return Long return the id
@@ -136,7 +126,5 @@ public class Usuario {
     public void setTask(List<Task> task) {
         this.task = task;
     }
-
-   
 
 }

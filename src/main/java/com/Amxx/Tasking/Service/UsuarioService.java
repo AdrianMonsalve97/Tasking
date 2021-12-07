@@ -24,7 +24,7 @@ public interface UsuarioService {
     boolean existsByNickname(String nickname);
 
     Optional<Usuario>  getOne(Long id);
-    Optional<Usuario> findByNickname(String nickname);
+    Optional<Usuario> getByNickname(String nickname);
 
 
 

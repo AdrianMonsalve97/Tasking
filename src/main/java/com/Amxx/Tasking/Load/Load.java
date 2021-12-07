@@ -35,7 +35,7 @@ class Load {
 
 			// Actualiza datos del usuario
 			user.setNombre("pepe");
-			user.setNickname("Pepe43");
+			user.setNickname("Pepe1");
 			user.setTelefono("12352336");
 			userService.save(user);
 

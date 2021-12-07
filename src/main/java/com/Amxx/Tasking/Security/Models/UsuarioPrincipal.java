@@ -21,7 +21,7 @@ public class UsuarioPrincipal implements UserDetails {
         this.authorities = authorities;
     }
 
-    public UsuarioPrincipal(String nombre2, String nickname2, String password2, List<GrantedAuthority> authorities2) {
+    public UsuarioPrincipal(String nombre, String nickname, String password, List<GrantedAuthority> authorities) {
     }
 
     public static UsuarioPrincipal build(Usuario usuario){

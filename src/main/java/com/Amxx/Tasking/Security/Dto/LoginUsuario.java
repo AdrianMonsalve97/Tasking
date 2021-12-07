@@ -8,14 +8,6 @@ public class LoginUsuario {
     @NotBlank
     private String password;
 
-    public String getNombreUsuario() {
-        return nickname;
-    }
-
-    public void setNombreUsuario(String nickname) {
-        this.nickname = nickname;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -23,4 +15,19 @@ public class LoginUsuario {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    /**
+     * @return String return the nickname
+     */
+    public String getNickname() {
+        return nickname;
+    }
+
+    /**
+     * @param nickname the nickname to set
+     */
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
 }

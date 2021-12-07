@@ -10,6 +10,7 @@ public class NuevoUsuario {
     private String nombre;
     @NotBlank
     private String nickname;
+    private String telefono;
     @NotBlank
     private String password;
     private Set<String> roles = new HashSet<>();
@@ -20,14 +21,6 @@ public class NuevoUsuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getNombreUsuario() {
-        return nickname;
-    }
-
-    public void setNombreUsuario(String nickname) {
-        this.nickname = nickname;
     }
 
    
@@ -54,4 +47,19 @@ public class NuevoUsuario {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
+
+    /**
+     * @return String return the telefono
+     */
+    public String getTelefono() {
+        return telefono;
+    }
+
+    /**
+     * @param telefono the telefono to set
+     */
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
 }

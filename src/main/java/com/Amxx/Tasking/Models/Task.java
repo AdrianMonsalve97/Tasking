@@ -17,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Task {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String description;
     private Long cantidad;
