@@ -2,11 +2,11 @@ package com.Amxx.Tasking.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.Amxx.Tasking.Security.Models.Usuario;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
-
-
-import com.Amxx.Tasking.Models.Usuario;
 
 public interface UsuarioService {
 
@@ -21,7 +21,11 @@ public interface UsuarioService {
     boolean existsById(Long id);
 
     boolean existsByNombre(String nombre);
+    boolean existsByNickname(String nickname);
 
     Optional<Usuario>  getOne(Long id);
+    Optional<Usuario> findByNickname(String nickname);
+
+
 
 }

@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.Amxx.Tasking.Dto.UsuarioDto;
+import com.Amxx.Tasking.Security.Models.Usuario;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -23,13 +26,29 @@ public class Task {
     @ManyToOne
     Usuario usuario;
 
+    public Task(Long id, String description, Long cantidad, Date fecha, Usuario usuario) {
+        this.id = id;
+        this.description = description;
+        this.cantidad = cantidad;
+        this.fecha = fecha;
+        this.usuario = usuario;
+    }
+
     public Task() {
+
     }
 
-    public Task(String description2, Long id2) {
+    public Task(String description, Long id, Date fecha, UsuarioDto usuario, Long cantidad) {
+
     }
 
-    public Task(String description2, Long id2, Date fecha2, Usuario usuario2) {
+    @Override
+    public String toString() {
+        return "Task [description=" + description + ", fecha=" + fecha + ", id=" + id + ", usuario=" + usuario + "]";
+    }
+
+    public void aumentarCantidad() {
+        this.setCantidad(this.getCantidad() + 1);
     }
 
     /**
@@ -86,20 +105,8 @@ public class Task {
         return cantidad;
     }
 
-    /**
-     * @param fecha the fecha to set
-     */
-    public void setCantidad(Long cantidad) {
+    public void setCantidad(long cantidad) {
         this.cantidad = cantidad;
-    }
-
-    @Override
-    public String toString() {
-        return "Task [description=" + description + ", fecha=" + fecha + ", id=" + id + ", usuario=" + usuario + "]";
-    }
-
-    public void aumentarCantidad() {
-        this.setCantidad(this.getCantidad() + 1);
     }
 
 }

@@ -3,9 +3,9 @@ package com.Amxx.Tasking.Load;
 import java.util.Date;
 import java.util.List;
 
-import com.Amxx.Tasking.Models.Usuario;
 import com.Amxx.Tasking.Service.TaskService;
 import com.Amxx.Tasking.Models.Task;
+import com.Amxx.Tasking.Security.Models.Usuario;
 import com.Amxx.Tasking.Service.UsuarioService;
 import org.springframework.data.domain.Sort;
 import org.springframework.boot.CommandLineRunner;
@@ -26,6 +26,8 @@ class Load {
 			user.setNombre("pepe");
 			user.setNickname("Pepe2");
 			user.setTelefono("12352336");
+			user.setPassword("12345");
+			user.getTask();
 			userService.save(user);
 
 			// Busca por id
@@ -67,6 +69,8 @@ class Load {
 			Task task = new Task();
 			task.setDescription("Tarea de tan");
 			task.setFecha(new Date());
+			task.setCantidad(0);
+			task.getUsuario();
 			taskService.save(task);
 
 			// Busca por id
@@ -88,7 +92,6 @@ class Load {
 			}
 		};
 	}
-
 
 	private void imprimirTask(String message, List<Task> tasks) {
 		System.out.println(message);

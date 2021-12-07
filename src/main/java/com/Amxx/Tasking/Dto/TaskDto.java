@@ -2,13 +2,30 @@ package com.Amxx.Tasking.Dto;
 
 import java.util.Date;
 
-import com.Amxx.Tasking.Models.Usuario;
-
 public class TaskDto {
     private Long id;
     private String description;
     private Date fecha;
-    Usuario usuario;
+    private Long cantidad;
+    UsuarioDto usuarioDto;
+
+    public TaskDto(Long id, String description, Date fecha, UsuarioDto usuarioDto) {
+        this.id = id;
+        this.description = description;
+        this.fecha = fecha;
+        this.usuarioDto = usuarioDto;
+    }
+
+    public Long getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Long cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public TaskDto() {
+    }
 
     /**
      * @return Long return the id
@@ -52,12 +69,12 @@ public class TaskDto {
         this.fecha = fecha;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public UsuarioDto getUsuario() {
+        return usuarioDto;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuario(UsuarioDto usuarioDto) {
+        this.usuarioDto = usuarioDto;
     }
 
 }

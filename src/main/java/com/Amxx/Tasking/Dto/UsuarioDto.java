@@ -3,12 +3,27 @@ package com.Amxx.Tasking.Dto;
 public class UsuarioDto {
 
     private Long id;
-   
+
     private String nombre;
-    
+
     private String telefono;
-    
+
+
     private String nickname;
+
+    TaskDto taskDto;
+
+    
+    public UsuarioDto(Long id, String nombre, String telefono, String nickname, TaskDto taskDto) {
+        this.id = id;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.nickname = nickname;
+        this.taskDto = taskDto;
+    }
+    public UsuarioDto() {
+    }
+
 
     /**
      * @return Long return the id
@@ -17,6 +32,7 @@ public class UsuarioDto {
         return id;
     }
 
+ 
     /**
      * @param id the id to set
      */
@@ -64,6 +80,12 @@ public class UsuarioDto {
      */
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+    public TaskDto getTaskDto() {
+        return taskDto;
+    }
+    public void setTaskDto(TaskDto taskDto) {
+        this.taskDto = taskDto;
     }
 
 }

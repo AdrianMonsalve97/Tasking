@@ -1,8 +1,12 @@
-package com.Amxx.Tasking.Models;
+package com.Amxx.Tasking.Security.Models;
 
 import javax.validation.constraints.NotNull;
 
+import com.Amxx.Tasking.Models.Task;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -19,15 +23,55 @@ public class Usuario {
     private String telefono;
     @NotNull
     private String nickname;
-
+    @NotNull
+    private String password;
     @OneToMany(mappedBy = "usuario")
     List<Task> task;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
+    inverseJoinColumns = @JoinColumn(name = "rol_id"))
+    private Set<Rol> roles = new HashSet<>();
+
+ 
+
+
+    public String getPassword() {
+        return password;
+    }
+
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+    public Set<Rol> getRoles() {
+        return roles;
+    }
+
+
+    public void setRoles(Set<Rol> roles) {
+        this.roles = roles;
+    }
+
 
     public Usuario() {
     }
 
-    public Usuario(String nombre, Long id) {
+
+    public Usuario(Long id, @NotNull String nombre, @NotNull String telefono, @NotNull String nickname,
+            List<Task> task) {
+        this.id = id;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.nickname = nickname;
+        this.task = task;
     }
+
+
+    public Usuario(String nombre2, String nombreUsuario, String encode) {
+    }
+
 
     /**
      * @return Long return the id
@@ -93,8 +137,6 @@ public class Usuario {
         this.task = task;
     }
 
-    public Usuario get() {
-        return null;
-    }
+   
 
 }

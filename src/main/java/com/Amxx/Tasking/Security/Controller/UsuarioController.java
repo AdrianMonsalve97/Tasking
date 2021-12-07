@@ -1,14 +1,15 @@
 package com.Amxx.Tasking.Security.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.Amxx.Tasking.Dto.Mensaje;
 import com.Amxx.Tasking.Dto.UsuarioDto;
-import com.Amxx.Tasking.Models.Usuario;
+import com.Amxx.Tasking.Security.Models.Usuario;
 import com.Amxx.Tasking.Service.TaskService;
 import com.Amxx.Tasking.Service.UsuarioService;
 
-import org.apache.commons.lang3.StringUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,11 +31,16 @@ public class UsuarioController {
     TaskService taskService;
 
     @GetMapping("/lista")
-    public ResponseEntity<List<Usuario>> list() {
+    public ResponseEntity<List<UsuarioDto>> list() {
         List<Usuario> list = usuarioService.list();
-        return new ResponseEntity(list, HttpStatus.OK);
+        ModelMapper modelMapper = new ModelMapper();
+        List<UsuarioDto> res = new ArrayList<>();
+        for (Usuario usuario : list) {
+            UsuarioDto usuarioDto = modelMapper.map(usuario, UsuarioDto.class);
+            res.add(usuarioDto);
+        }
+        return new ResponseEntity<List<UsuarioDto>>(res, HttpStatus.OK);
     }
-
     @GetMapping("/detail/{id}")
     public ResponseEntity<Usuario> getById(@PathVariable("id") Long id) {
         if (!usuarioService.existsById(id))
@@ -42,24 +48,6 @@ public class UsuarioController {
         Usuario usuario = usuarioService.getOne(id).get();
         return new ResponseEntity(usuario, HttpStatus.OK);
     }
-
-
-   
-    @PostMapping(value = "/agregar/{id}")
-
-    public ResponseEntity<?> create(@RequestBody UsuarioDto usuarioDto){
-        if(StringUtils.isBlank(usuarioDto.getNombre()))
-            return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-      else if(usuarioDto.getId()==null || usuarioDto.getId()<0 )
-            return new ResponseEntity(new Mensaje("el id del usuario debe ser mayor que 1"), HttpStatus.BAD_REQUEST);
-        if(usuarioService.existsByNombre(usuarioDto.getNombre()))
-            return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
-        Usuario usuario = new Usuario(usuarioDto.getNombre(), usuarioDto.getId());
-        usuarioService.save(usuario);
-        return new ResponseEntity(new Mensaje("producto creado"), HttpStatus.OK);
-    }
-
-
 
     @PostMapping("/addUser")
     private Usuario save(@RequestBody Usuario usuario) {

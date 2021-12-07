@@ -3,8 +3,8 @@ package com.Amxx.Tasking.Service.Implements;
 import java.util.List;
 import java.util.Optional;
 
-import com.Amxx.Tasking.Models.Usuario;
 import com.Amxx.Tasking.Respositories.UsuarioRepository;
+import com.Amxx.Tasking.Security.Models.Usuario;
 import com.Amxx.Tasking.Service.UsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +53,16 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public boolean existsByNombre(String nombre) {
         return usuarioRepository.existsByNombre(nombre);
+    }
+
+    @Override
+    public Optional<Usuario> findByNickname(String nickname) {
+        return usuarioRepository.findByNickname(nickname);
+    }
+
+    @Override
+    public boolean existsByNickname(String nickname) {
+        return usuarioRepository.existsByNickname(nickname);
     }
 
 }
