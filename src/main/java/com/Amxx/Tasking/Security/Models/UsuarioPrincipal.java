@@ -14,19 +14,16 @@ public class UsuarioPrincipal implements UserDetails {
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UsuarioPrincipal(String nombre, String nickname, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UsuarioPrincipal(String nombre, String nickname, String password,
+            Collection<? extends GrantedAuthority> authorities) {
         this.nombre = nombre;
         this.nickname = nickname;
         this.password = password;
         this.authorities = authorities;
     }
 
-    public UsuarioPrincipal(String nombre, String nickname, String password, List<GrantedAuthority> authorities) {
-    }
-
-    public static UsuarioPrincipal build(Usuario usuario){
-        List<GrantedAuthority> authorities =
-                usuario.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol
+    public static UsuarioPrincipal build(Usuario usuario) {
+        List<GrantedAuthority> authorities = usuario.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol
                 .getRolNombre().name())).collect(Collectors.toList());
         return new UsuarioPrincipal(usuario.getNombre(), usuario.getNickname(), usuario.getPassword(), authorities);
     }

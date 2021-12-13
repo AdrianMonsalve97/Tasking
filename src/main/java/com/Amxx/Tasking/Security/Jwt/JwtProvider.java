@@ -8,21 +8,22 @@ import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 @Component
+
 public class JwtProvider {
 
     private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
-    // @Value("${jwt.secret}")
+    @Value("${jwt.secret}")
     private String secret;
 
-    // @Value("${jwt.expiration}")
+    @Value("${jwt.expiration}")
     private int expiration;
-
-    public String generateToken(Authentication authentication) {
+    public String generateToken(Authentication authentication){
         UsuarioPrincipal usuarioPrincipal = (UsuarioPrincipal) authentication.getPrincipal();
         return Jwts.builder().setSubject(usuarioPrincipal.getUsername())
                 .setIssuedAt(new Date())
@@ -31,7 +32,7 @@ public class JwtProvider {
                 .compact();
     }
 
-    public String getNombreUsuarioFromToken(String token) {
+    public String getNicknameFromToken(String token) {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
     }
 

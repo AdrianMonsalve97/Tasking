@@ -9,7 +9,7 @@ import com.Amxx.Tasking.Security.Enums.RolNombre;
 public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @NotNull
     @Enumerated(EnumType.STRING)
     private RolNombre rolNombre;
@@ -21,11 +21,11 @@ public class Rol {
         this.rolNombre = rolNombre;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -36,5 +36,5 @@ public class Rol {
     public void setRolNombre(RolNombre rolNombre) {
         this.rolNombre = rolNombre;
     }
-    
+
 }

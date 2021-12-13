@@ -16,16 +16,20 @@ public interface UsuarioService {
 
     Page<Usuario> getUsuario(int page, int size, Sort sort);
 
+    Usuario findFirstById(Long id);
+
     List<Usuario> list();
 
     boolean existsById(Long id);
 
     boolean existsByNombre(String nombre);
+
     boolean existsByNickname(String nickname);
 
-    Optional<Usuario>  getOne(Long id);
+    Optional<Usuario> getOne(Long id);
+
     Optional<Usuario> getByNickname(String nickname);
 
-
+    void delete(Long id);
 
 }

@@ -22,10 +22,10 @@ public class JwtEntryPoint implements AuthenticationEntryPoint {
             throws IOException, ServletException {
 
         try {
-            logger.error("fail en el método commence" + e.getMessage());
+            logger.error("fail en el método commence " + e.getMessage());
             res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "no autorizado");
         } catch (Exception i) {
-            logger.error("fail en el método doFilter " + i.getMessage());
+            logger.error("fail en el método doFilter  " +  i.getMessage());
         }
     }
 

@@ -47,4 +47,20 @@ public class TaskServiceImpl implements TaskService {
         return taskRepository.existsByDescription(description);
     }
 
+    @Override
+    public void delete(Long id) {
+        taskRepository.deleteById(id);
+
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return taskRepository.existsById(id);
+    }
+
+    @Override
+    public Task findFirstById(Long id) {
+        return taskRepository.findFirstById(id);
+    }
+
 }

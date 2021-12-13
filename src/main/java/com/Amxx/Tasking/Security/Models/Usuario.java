@@ -19,7 +19,6 @@ public class Usuario {
     private Long id;
     @NotNull
     private String nombre;
-
     private String telefono;
     @NotNull
     @Column(unique = true)
@@ -31,6 +30,39 @@ public class Usuario {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
+
+    public Usuario() {
+    }
+
+    public Usuario(@NotNull String nombre, String telefono, @NotNull String nickname, @NotNull String password,
+            List<Task> task, Set<Rol> roles) {
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.nickname = nickname;
+        this.password = password;
+        this.task = task;
+        this.roles = roles;
+    }
+
+    public Usuario(@NotNull String nombre, @NotNull String nickname, String telefono, @NotNull String password) {
+        this.nombre = nombre;
+        this.nickname = nickname;
+        this.telefono = telefono;
+        this.password = password;
+
+    }
+
+    public Usuario(String nombre, Long id, String nickname,
+            Set<Rol> roles, List<Task> task, String password, String telefono) {
+        this.id = id;
+        this.nombre = nombre;
+        this.nickname = nickname;
+        this.task = task;
+        this.roles = roles;
+        this.password = password;
+        this.telefono = telefono;
+
+    }
 
     public String getPassword() {
         return password;
@@ -46,21 +78,6 @@ public class Usuario {
 
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
-    }
-
-    public Usuario() {
-    }
-
-    public Usuario(Long id, @NotNull String nombre, @NotNull String telefono, @NotNull String nickname,
-            List<Task> task) {
-        this.id = id;
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.nickname = nickname;
-        this.task = task;
-    }
-
-    public Usuario(String nombre, String nombreUsuario, String encode) {
     }
 
     /**

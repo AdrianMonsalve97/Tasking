@@ -20,4 +20,10 @@ public interface TaskService {
 
     boolean existsByDescription(String description);
 
+    void delete(Long id);
+
+    boolean existsById(Long id);
+
+    Task findFirstById(Long id);
+
 }

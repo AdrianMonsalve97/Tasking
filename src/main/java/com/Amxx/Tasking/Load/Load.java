@@ -3,22 +3,24 @@ package com.Amxx.Tasking.Load;
 import java.util.Date;
 import java.util.List;
 
-import com.Amxx.Tasking.Service.TaskService;
 import com.Amxx.Tasking.Models.Task;
 import com.Amxx.Tasking.Security.Models.Usuario;
+import com.Amxx.Tasking.Service.TaskService;
 import com.Amxx.Tasking.Service.UsuarioService;
-import org.springframework.data.domain.Sort;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 class Load {
 
 	@Bean
-	CommandLineRunner initDatabase(UsuarioService userService) {
+	CommandLineRunner initDatabase(UsuarioService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
 		return args -> {
 			System.out.println("Probando la capa de servicios");
 
@@ -26,18 +28,17 @@ class Load {
 			user.setNombre("pepe");
 			user.setNickname("Pepe2");
 			user.setTelefono("12352336");
-			user.setPassword("12345");
-			user.getTask();
+			user.setPassword(bCryptPasswordEncoder.encode("admi"));
 			userService.save(user);
 
 			// Busca por id
 			user = userService.findById(1L).get();
 
 			// Actualiza datos del usuario
-			user.setNombre("pepe");
-			user.setNickname("Pepe1");
-			user.setTelefono("12352336");
-			userService.save(user);
+			// user.setNombre("pepe");
+			// user.setNickname("Pepe1");
+			// user.setTelefono("12352336");
+			// userService.save(user);
 
 			// Accediendo a la segunda pagina de User para un tamaño de pagina de 10,
 			// ordenando por firstname de manera ascendente

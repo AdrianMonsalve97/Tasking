@@ -29,6 +29,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
   @Query("select u from Usuario u where u.nickname=?1")
   public Optional<Usuario> getByNickname(String nickname);
 
+Usuario findFirstById(Long id);
+
   // @Query("select u.task from Usuario where = :id")
   // List<Usuario> findByIdContains(Long id);
 

@@ -65,4 +65,15 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioRepository.existsByNickname(nickname);
     }
 
+    @Override
+    public void delete(Long id) {
+        usuarioRepository.deleteById(id);
+
+    }
+
+    @Override
+    public Usuario findFirstById(Long id) {
+        return usuarioRepository.findFirstById(id);
+    }
+
 }

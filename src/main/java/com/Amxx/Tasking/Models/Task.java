@@ -26,8 +26,8 @@ public class Task {
     @ManyToOne
     Usuario usuario;
 
-    public Task(Long id, String description, Long cantidad, Date fecha, Usuario usuario) {
-        this.id = id;
+    public Task(String description, Long cantidad, Date fecha, Usuario usuario) {
+
         this.description = description;
         this.cantidad = cantidad;
         this.fecha = fecha;
@@ -39,7 +39,17 @@ public class Task {
     }
 
     public Task(String description, Long id, Date fecha, UsuarioDto usuario, Long cantidad) {
+        this.description = description;
+        this.cantidad = cantidad;
+        this.fecha = fecha;
+    }
 
+    public Task(String description, Date fecha, Long cantidad) {
+    }
+
+    public Task(String description, Long id, Date fecha) {
+        this.description = description;
+        this.fecha = fecha;
     }
 
     @Override
