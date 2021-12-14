@@ -23,8 +23,17 @@ public class Task {
     private Long cantidad;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
+    private Boolean activo;
     @ManyToOne
     Usuario usuario;
+
+    public Task(String description, Long cantidad, Date fecha, Boolean activo, Usuario usuario) {
+        this.description = description;
+        this.cantidad = cantidad;
+        this.fecha = fecha;
+        this.activo = activo;
+        this.usuario = usuario;
+    }
 
     public Task(String description, Long cantidad, Date fecha, Usuario usuario) {
 
@@ -117,6 +126,21 @@ public class Task {
 
     public void setCantidad(long cantidad) {
         this.cantidad = cantidad;
+    }
+
+
+    /**
+     * @return Boolean return the activo
+     */
+    public Boolean isActivo() {
+        return activo;
+    }
+
+    /**
+     * @param activo the activo to set
+     */
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 
 }
