@@ -8,6 +8,8 @@ import com.Amxx.Tasking.Security.Models.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
+
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
   // Valida si existe un usuario por nombre
@@ -29,9 +31,12 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
   @Query("select u from Usuario u where u.nickname=?1")
   public Optional<Usuario> getByNickname(String nickname);
 
-Usuario findFirstById(Long id);
+  Usuario findFirstById(Long id);
 
   // @Query("select u.task from Usuario where = :id")
   // List<Usuario> findByIdContains(Long id);
+
+  @Query(value = "SELECT u FROM User u")
+  List<Usuario> findAllUsers(Sort sort);
 
 }
