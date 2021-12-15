@@ -20,6 +20,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
   boolean existsById(Long id);
 
+  @Query("SELECT u FROM User u WHERE u.nombre = ?1 OR u.nickname = ?2")
+  Optional<Usuario> findByNombreONickname(String nombre, String nickname);
+
   // Realiza un listado por nombre
   // List<Usuario> findByNombre(String nombre);
   // Realiza una busqueda por id del usuario
