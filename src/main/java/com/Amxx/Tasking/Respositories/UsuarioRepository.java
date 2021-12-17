@@ -20,8 +20,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
   boolean existsById(Long id);
 
-  @Query("SELECT u FROM User u WHERE u.nombre = ?1 OR u.nickname = ?2")
-  Optional<Usuario> findByNombreONickname(String nombre, String nickname);
+  // @Query("SELECT u FROM User u WHERE u.nombre = ?1 OR u.nickname = ?2")
+  // Optional<Usuario> findByNombreONickname(String nombre, String nickname);
 
   // Realiza un listado por nombre
   // List<Usuario> findByNombre(String nombre);
@@ -31,7 +31,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
   @Query("SELECT u FROM Usuario u WHERE u.task IS NOT EMPTY ")
   List<Usuario> findByTaskContains();
 
-  @Query("select u from Usuario u where u.nickname=?1")
+  // @Query("select u from Usuario u where u.nickname=?1")
   public Optional<Usuario> getByNickname(String nickname);
 
   Usuario findFirstById(Long id);
@@ -39,7 +39,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
   // @Query("select u.task from Usuario where = :id")
   // List<Usuario> findByIdContains(Long id);
 
-  @Query(value = "SELECT u FROM User u")
-  List<Usuario> findAllUsers(Sort sort);
+  // @Query(value = "SELECT u FROM User u")
+  // List<Usuario> findAllUsers(Sort sort);
 
 }

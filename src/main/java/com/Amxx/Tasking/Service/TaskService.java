@@ -26,4 +26,6 @@ public interface TaskService {
 
     Task findFirstById(Long id);
 
+    List<Task> findTaskByIdAndCantidad(Long id, Long cantidad);
+
 }

@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -124,6 +125,16 @@ public class TaskController {
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
         taskService.delete(id);
         return new ResponseEntity(new Mensaje("Usuario eliminado"), HttpStatus.OK);
+    }
+
+    // consulta de criteria //
+
+    @GetMapping("/consultacriteria")
+    public List<Task> findAllTasks(@RequestParam(required = false) Long id,
+            @RequestParam(required = false) Long cantidad) {
+
+        return taskService.findTaskByIdAndCantidad(id, cantidad);
+
     }
 
 }

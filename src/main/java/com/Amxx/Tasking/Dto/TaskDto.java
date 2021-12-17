@@ -7,12 +7,15 @@ public class TaskDto {
     private String description;
     private Date fecha;
     private Long cantidad;
+    private Boolean activo;
     UsuarioDto usuarioDto;
 
-    public TaskDto(Long id, String description, Date fecha, UsuarioDto usuarioDto) {
+    public TaskDto(Long id, String description, Date fecha, Long cantidad, Boolean activo, UsuarioDto usuarioDto) {
         this.id = id;
         this.description = description;
         this.fecha = fecha;
+        this.cantidad = cantidad;
+        this.activo = activo;
         this.usuarioDto = usuarioDto;
     }
 
@@ -75,6 +78,14 @@ public class TaskDto {
 
     public void setUsuario(UsuarioDto usuarioDto) {
         this.usuarioDto = usuarioDto;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 
 }

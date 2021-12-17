@@ -72,6 +72,7 @@ class Load {
 			task.setFecha(new Date());
 			task.setCantidad(0);
 			task.getUsuario();
+			task.setActivo(false);
 			taskService.save(task);
 
 			// Busca por id

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.Amxx.Tasking.Models.Task;
 import com.Amxx.Tasking.Respositories.TaskRespository;
+import com.Amxx.Tasking.Respositories.CriteriaRepository.TaskCriteria;
 import com.Amxx.Tasking.Service.TaskService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
 
     TaskRespository taskRepository;
+
+    @Autowired
+    public TaskCriteria criteriaQuery;
 
     @Override
     public void save(Task task) {
@@ -61,6 +65,11 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task findFirstById(Long id) {
         return taskRepository.findFirstById(id);
+    }
+
+    @Override
+    public List<Task> findTaskByIdAndCantidad(Long id, Long cantidad) {
+        return criteriaQuery.findTaskByIdAndCantidad(id, cantidad);
     }
 
 }
