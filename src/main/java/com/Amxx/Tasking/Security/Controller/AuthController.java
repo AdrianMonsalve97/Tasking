@@ -1,5 +1,10 @@
 package com.Amxx.Tasking.Security.Controller;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.validation.Valid;
+
 import com.Amxx.Tasking.Dto.Mensaje;
 import com.Amxx.Tasking.Security.Dto.JwtDto;
 import com.Amxx.Tasking.Security.Dto.LoginUsuario;
@@ -9,7 +14,9 @@ import com.Amxx.Tasking.Security.Jwt.JwtProvider;
 import com.Amxx.Tasking.Security.Models.Rol;
 import com.Amxx.Tasking.Security.Models.Usuario;
 import com.Amxx.Tasking.Security.service.RolService;
+import com.Amxx.Tasking.Service.TaskService;
 import com.Amxx.Tasking.Service.UsuarioService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +27,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Set;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
@@ -38,6 +44,8 @@ public class AuthController {
 
     @Autowired
     UsuarioService usuarioService;
+    @Autowired
+    TaskService taskService;
 
     @Autowired
     RolService rolService;
@@ -46,20 +54,28 @@ public class AuthController {
     JwtProvider jwtProvider;
 
     @PostMapping("/nuevo")
-    public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult) {
+    public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario,
+            BindingResult bindingResult) {
         if (usuarioService.existsByNickname(nuevoUsuario.getNickname()))
-            return new ResponseEntity(new Mensaje("usuario ya existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("usuario ya existe"),
+                    HttpStatus.BAD_REQUEST);
         if (usuarioService.existsByNombre(nuevoUsuario.getNombre()))
-            return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
-        Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNickname(), nuevoUsuario.getTelefono(),
+            return new ResponseEntity(new Mensaje("ese nombre ya existe"),
+                    HttpStatus.BAD_REQUEST);
+        Usuario usuario = new Usuario(nuevoUsuario.getNombre(),
+                nuevoUsuario.getNickname(), nuevoUsuario.getTelefono(),
                 passwordEncoder.encode(nuevoUsuario.getPassword()));
         Set<Rol> roles = new HashSet<>();
         roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
         if (nuevoUsuario.getRoles().contains("admin"))
             roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
         usuario.setRoles(roles);
+        // // List<Task> tasks = new ArrayList<>();
+        // tasks.add(taskService.getById(Task.id));
+
         usuarioService.save(usuario);
-        return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
+        return new ResponseEntity(new Mensaje("usuario guardado"),
+                HttpStatus.CREATED);
     }
 
     @PostMapping("/login")

@@ -3,6 +3,8 @@ package com.Amxx.Tasking.Service.Implements;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import com.Amxx.Tasking.Models.Task;
 import com.Amxx.Tasking.Respositories.TaskRespository;
 import com.Amxx.Tasking.Respositories.CriteriaRepository.TaskCriteria;
@@ -25,7 +27,7 @@ public class TaskServiceImpl implements TaskService {
     public TaskCriteria criteriaQuery;
 
     @Override
-    public void save(Task task) {
+    public void saveTask(Task task) {
         taskRepository.save(task);
 
     }
@@ -70,6 +72,19 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> findTaskByIdAndCantidad(Long id, Long cantidad) {
         return criteriaQuery.findTaskByIdAndCantidad(id, cantidad);
+    }
+
+    // @Override
+    // public Optional<Usuario> save(Usuario usuario) {
+
+    //     return taskRepository.save(usuario);
+    // }
+
+   
+    @Override
+    @Transactional
+    public Task save(Task task) {
+        return taskRepository.save(task);
     }
 
 }

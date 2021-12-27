@@ -31,19 +31,6 @@ public class Usuario {
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
 
-    public Usuario() {
-    }
-
-    public Usuario(@NotNull String nombre, String telefono, @NotNull String nickname, @NotNull String password,
-            List<Task> task, Set<Rol> roles) {
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.nickname = nickname;
-        this.password = password;
-        this.task = task;
-        this.roles = roles;
-    }
-
     public Usuario(@NotNull String nombre, @NotNull String nickname, String telefono, @NotNull String password) {
         this.nombre = nombre;
         this.nickname = nickname;
@@ -52,32 +39,7 @@ public class Usuario {
 
     }
 
-    public Usuario(String nombre, Long id, String nickname,
-            Set<Rol> roles, List<Task> task, String password, String telefono) {
-        this.id = id;
-        this.nombre = nombre;
-        this.nickname = nickname;
-        this.task = task;
-        this.roles = roles;
-        this.password = password;
-        this.telefono = telefono;
-
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<Rol> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Rol> roles) {
-        this.roles = roles;
+    public Usuario() {
     }
 
     /**
@@ -134,6 +96,34 @@ public class Usuario {
      */
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    /**
+     * @return String return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * @return Set<Rol> return the roles
+     */
+    public Set<Rol> getRoles() {
+        return roles;
+    }
+
+    /**
+     * @param roles the roles to set
+     */
+    public void setRoles(Set<Rol> roles) {
+        this.roles = roles;
     }
 
     public List<Task> getTask() {

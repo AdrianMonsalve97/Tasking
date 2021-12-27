@@ -3,12 +3,11 @@ package com.Amxx.Tasking.Respositories;
 import java.util.List;
 import java.util.Optional;
 
+import com.Amxx.Tasking.Models.Task;
 import com.Amxx.Tasking.Security.Models.Usuario;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
-import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
@@ -35,6 +34,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
   public Optional<Usuario> getByNickname(String nickname);
 
   Usuario findFirstById(Long id);
+
+  Optional<Task> save(Task task);
 
   // @Query("select u.task from Usuario where = :id")
   // List<Usuario> findByIdContains(Long id);

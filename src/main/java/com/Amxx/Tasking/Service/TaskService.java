@@ -10,7 +10,7 @@ import org.springframework.data.domain.Sort;
 
 public interface TaskService {
 
-    void save(Task task);
+    Task save(Task task);
 
     Page<Task> getTask(int page, int size, Sort sort);
 
@@ -28,4 +28,5 @@ public interface TaskService {
 
     List<Task> findTaskByIdAndCantidad(Long id, Long cantidad);
 
+    void saveTask(Task task);
 }

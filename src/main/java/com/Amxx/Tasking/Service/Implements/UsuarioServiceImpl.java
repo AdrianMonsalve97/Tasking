@@ -3,6 +3,7 @@ package com.Amxx.Tasking.Service.Implements;
 import java.util.List;
 import java.util.Optional;
 
+import com.Amxx.Tasking.Models.Task;
 import com.Amxx.Tasking.Respositories.UsuarioRepository;
 import com.Amxx.Tasking.Security.Models.Usuario;
 import com.Amxx.Tasking.Service.UsuarioService;
@@ -26,15 +27,15 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public void save(Usuario usuario) {
-        usuarioRepository.save(usuario);
+    public Usuario save(Usuario usuario) {
+        return usuarioRepository.save(usuario);
 
     }
 
-    @Override
-    public Optional<Usuario> findById(Long id) {
-        return usuarioRepository.findById(id);
-    }
+    // @Override
+    // public Optional<Usuario> findById(Long id) {
+    // return usuarioRepository.findById(id);
+    // }
 
     @Override
     public Page<Usuario> getUsuario(int page, int size, Sort sort) {
@@ -74,6 +75,18 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario findFirstById(Long id) {
         return usuarioRepository.findFirstById(id);
+    }
+
+    @Override
+    public Optional<Task> save(Task task) {
+
+        return usuarioRepository.save(task);
+    }
+
+    @Override
+    public Optional<Usuario> findById(Long id) {
+
+        return usuarioRepository.findById(id);
     }
 
 }

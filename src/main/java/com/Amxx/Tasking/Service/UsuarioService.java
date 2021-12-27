@@ -3,6 +3,7 @@ package com.Amxx.Tasking.Service;
 import java.util.List;
 import java.util.Optional;
 
+import com.Amxx.Tasking.Models.Task;
 import com.Amxx.Tasking.Security.Models.Usuario;
 
 import org.springframework.data.domain.Page;
@@ -10,7 +11,7 @@ import org.springframework.data.domain.Sort;
 
 public interface UsuarioService {
 
-    void save(Usuario usuario);
+    Usuario save(Usuario usuario);
 
     Optional<Usuario> findById(Long id);
 
@@ -31,5 +32,7 @@ public interface UsuarioService {
     Optional<Usuario> getByNickname(String nickname);
 
     void delete(Long id);
+
+    Optional<Task> save(Task task);
 
 }

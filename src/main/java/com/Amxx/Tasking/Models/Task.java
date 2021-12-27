@@ -128,7 +128,6 @@ public class Task {
         this.cantidad = cantidad;
     }
 
-
     /**
      * @return Boolean return the activo
      */
