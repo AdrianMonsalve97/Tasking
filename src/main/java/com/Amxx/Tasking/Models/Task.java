@@ -1,6 +1,7 @@
 package com.Amxx.Tasking.Models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -61,9 +62,24 @@ public class Task {
         this.fecha = fecha;
     }
 
+    public Task(String nombre, Long id, List<Task> task, String nickname, float f) {
+    }
+
+    // @Override
+    // public String toString() {
+    // return "Task [description=" + description + ", fecha=" + fecha + ", id=" + id
+    // + ", usuario=" + usuario + "]";
+    // }
+
     @Override
     public String toString() {
-        return "Task [description=" + description + ", fecha=" + fecha + ", id=" + id + ", usuario=" + usuario + "]";
+        final StringBuffer sb = new StringBuffer("Producto 👍{");
+        sb.append("id=").append(id);
+        sb.append(", description='").append(description);
+        sb.append(", cantidad='").append(cantidad);
+        sb.append(", fecha=").append(fecha);
+
+        return sb.toString();
     }
 
     public void aumentarCantidad() {

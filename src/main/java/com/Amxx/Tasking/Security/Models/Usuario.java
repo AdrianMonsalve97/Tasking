@@ -25,6 +25,7 @@ public class Usuario {
     private String nickname;
     @NotNull
     private String password;
+    private Long stock; 
     @OneToMany(mappedBy = "usuario")
     List<Task> task;
     @ManyToMany(fetch = FetchType.EAGER)
@@ -38,6 +39,8 @@ public class Usuario {
         this.password = password;
 
     }
+
+
 
     public Usuario() {
     }
@@ -130,8 +133,17 @@ public class Usuario {
         return task;
     }
 
+    public boolean sinStock() {
+        return this.stock <= 0;
+    }
+
     public void setTask(List<Task> task) {
         this.task = task;
+    }
+
+
+
+    public void add(Task task2) {
     }
 
 }

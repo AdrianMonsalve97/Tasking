@@ -35,7 +35,7 @@ public class TaskController {
 
     UsuarioService usuarioService;
 
-    @GetMapping("/LIst")
+    @GetMapping("/List")
     public List<TaskDto> list() {
         List<Task> tasks = taskService.list();
         ModelMapper modelMapper = new ModelMapper();
@@ -71,13 +71,10 @@ public class TaskController {
         return new ResponseEntity(new Mensaje("tarea creada"), HttpStatus.OK);
     }
 
-
-
-    @PostMapping("/asignarTarea")
-    public ResponseEntity<Task> save(@RequestBody Task task) {
-
-        return new ResponseEntity<Task>(this.taskService.save(task), HttpStatus.CREATED);
-    }
+    // @PostMapping("/asignarTarea/{id}")
+    // public ResponseEntity<Task> save(@RequestBody Task task) {
+    //     return new ResponseEntity<Task>(this.taskService.save(task), HttpStatus.CREATED);
+    // }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/delete/{id}")
